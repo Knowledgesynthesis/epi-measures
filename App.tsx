@@ -1347,7 +1347,7 @@ export default function App() {
                 </motion.div>
             </header>
 
-            <main className="w-full max-w-4xl lg:max-w-6xl space-y-16 p-4 sm:p-8">
+            <main className="w-full max-w-5xl lg:max-w-7xl space-y-16 p-4 sm:p-8">
                 {contentSections.map((section, index) => (
                 <React.Fragment key={section.id}>
                     <motion.section
@@ -1383,7 +1383,7 @@ export default function App() {
                 ))}
             </main>
 
-            <footer className="w-full max-w-4xl lg:max-w-6xl text-center py-16 mt-16 text-slate-500">
+            <footer className="w-full max-w-5xl lg:max-w-7xl text-center py-16 mt-16 text-slate-500">
                 <p>End of Presentation</p>
             </footer>
         </div>
