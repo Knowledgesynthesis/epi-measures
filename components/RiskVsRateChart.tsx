@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 
-const CHART_WIDTH = 700;
-const CHART_HEIGHT = 420;
+const CHART_WIDTH = 875;
+const CHART_HEIGHT = 525;
 const PADDING = 60;
 
 const mapRange = (value: number, inMin: number, inMax: number, outMin: number, outMax: number) => {
