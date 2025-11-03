@@ -78,12 +78,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ sections, activeSection, increa
         <>
             {/* Backdrop */}
             <div
-                className="lg:hidden fixed inset-0 bg-black/60 z-40 backdrop-blur-sm"
+                className="2xl:hidden fixed inset-0 bg-black/60 z-40 backdrop-blur-sm"
                 onClick={onClose}
             />
 
             {/* Sliding Menu */}
-            <aside className={`lg:hidden fixed top-0 right-0 h-screen w-80 bg-slate-900 border-l border-slate-700/50 z-50 transform transition-transform duration-300 ease-in-out ${
+            <aside className={`2xl:hidden fixed top-0 right-0 h-screen w-80 bg-slate-900 border-l border-slate-700/50 z-50 transform transition-transform duration-300 ease-in-out ${
                 isOpen ? 'translate-x-0' : 'translate-x-full'
             }`}>
                 <div className="p-6">
@@ -160,7 +160,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ sections, activeSecti
     };
 
     return (
-        <aside className="hidden lg:block fixed top-0 left-0 h-screen w-72 p-8 pt-24 text-sm">
+        <aside className="hidden 2xl:block fixed top-0 left-0 h-screen w-72 p-8 pt-24 text-sm">
             <nav className="overflow-y-auto h-full pr-4">
                  <div className="mb-6 pb-4 border-b border-slate-700/50">
                     <h3 className="font-semibold text-slate-200 mb-2">Text Size</h3>
@@ -1301,17 +1301,17 @@ export default function App() {
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
       />
-      {/* Hamburger Menu Button - Mobile/Tablet only */}
+      {/* Hamburger Menu Button */}
       <button
         onClick={() => setIsMobileMenuOpen(true)}
-        className="lg:hidden fixed top-6 right-6 z-30 p-3 bg-slate-800 hover:bg-slate-700 rounded-lg shadow-lg transition"
+        className="2xl:hidden fixed top-6 right-6 z-30 p-3 bg-slate-800 hover:bg-slate-700 rounded-lg shadow-lg transition"
         aria-label="Open menu"
       >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-slate-200">
           <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
       </button>
-      <div className="lg:pl-72">
+      <div className="2xl:pl-72">
         <div className="flex flex-col items-center w-full">
             <header id="overview" className="h-screen w-full flex flex-col items-center justify-center text-center relative scroll-mt-20 p-4 sm:p-8">
                 <motion.div
