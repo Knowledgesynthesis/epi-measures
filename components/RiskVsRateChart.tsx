@@ -70,7 +70,7 @@ export const RiskVsRateChart: React.FC = () => {
     return (
         <div className="w-full mt-8 p-4 sm:p-6 bg-slate-900/50 border border-slate-700/50 rounded-lg flex flex-col items-center">
             
-            <div className="w-full max-w-lg mb-6">
+            <div className="w-full max-w-xl mb-6">
                 <label htmlFor="affected-slider" className="block text-center text-slate-400 mb-2">
                     Proportion of Population Affected: <span className="font-bold text-slate-100">{(affectedProportion * 100).toFixed(0)}%</span>
                 </label>
@@ -87,7 +87,7 @@ export const RiskVsRateChart: React.FC = () => {
                 />
             </div>
 
-            <div className="relative w-full max-w-2xl mx-auto">
+            <div className="relative w-full max-w-3xl mx-auto">
                 <svg viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`} className="w-full" aria-labelledby="chart-title" role="img">
                     <title id="chart-title">Chart showing divergence of Risk and Rate</title>
                     {/* Grid lines and axes */}
@@ -138,7 +138,7 @@ export const RiskVsRateChart: React.FC = () => {
                 </svg>
             </div>
             
-            <div className="w-full max-w-lg mt-6 grid grid-cols-2 gap-4 text-center">
+            <div className="w-full max-w-xl mt-6 grid grid-cols-2 gap-4 text-center">
                 <div className="p-4 bg-slate-800 rounded-lg">
                     <div className="flex items-center justify-center mb-1">
                         <span className="w-3 h-3 rounded-full bg-sky-500 mr-2"></span>
