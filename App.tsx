@@ -942,6 +942,32 @@ const contentSections = [
       <div key="ypll-s4-formula" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">Total YPLL = 140 + 540 + 200 = 840 years</div>,
       <p key="ypll-s4-interp" className="p-3 bg-sky-900/40 border-l-4 border-sky-500 rounded-r-lg"><Strong>✅ Interpretation:</Strong> The total <Strong>Years of Potential Life Lost (YPLL)</Strong> in this example is <Strong>840 years</Strong>. This represents the cumulative number of years that would have been lived had those who died prematurely survived to age 75.</p>,
 
+      <h3 key="ypll-rate-h" className="text-2xl font-bold text-slate-100 mt-8">Converting Total YPLL to a YPLL Rate</h3>,
+      <p key="ypll-rate-p1">To compare across populations, YPLL is often expressed as a <Strong>rate</Strong>:</p>,
+      <div key="ypll-rate-formula1" className="p-4 bg-slate-800/50 rounded-lg text-xl font-mono text-slate-300">
+        <div className="flex items-center justify-center flex-wrap">
+          <span>YPLL Rate =&nbsp;</span>
+          <Fraction numerator="Total YPLL" denominator="Population under benchmark age" />
+          <span>&nbsp;× k</span>
+        </div>
+      </div>,
+      <p key="ypll-rate-p2">where <em className="italic">k</em> is usually 100,000.</p>,
+
+      <h4 key="ypll-rate-ex-h" className="text-xl font-semibold text-slate-100 mt-6">Example:</h4>,
+      <ul key="ypll-rate-ex-ul" className="list-['–'] list-inside space-y-1 pl-4">
+        <li>Total YPLL = 840 years</li>
+        <li>Population under 75 years = 50,000</li>
+        <li>Scaling factor (k) = 100,000</li>
+      </ul>,
+      <div key="ypll-rate-ex-calc" className="p-4 bg-slate-800/50 rounded-lg text-xl font-mono text-slate-300 space-y-3">
+        <div className="flex items-center justify-center flex-wrap">
+          <span>YPLL Rate = (840 / 50,000) × 100,000 = 1,680</span>
+        </div>
+      </div>,
+      <p key="ypll-rate-ex-result" className="p-3 bg-teal-900/40 border-l-4 border-teal-500 rounded-r-lg"><Strong>✅ YPLL Rate = 1,680 years lost per 100,000 population under age 75</Strong></p>,
+      <p key="ypll-rate-interp-h"><Strong>Interpretation:</Strong></p>,
+      <p key="ypll-rate-interp-p">This means that, on average, 1,680 potential years of life are lost for every 100,000 people under age 75 in this population.</p>,
+
       <h3 key="ypll-ex-h" className="text-2xl font-bold text-slate-100">Example (Simplified Individual-Level)</h3>,
       <p key="ypll-ex-p1"><Strong>Benchmark age:</Strong> 75 years<br/><Strong>Deaths at ages:</Strong> 25, 40, 80</p>,
       <div key="ypll-ex-formula" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">YPLL = (75 - 25) + (75 - 40) + 0 = 85 years</div>,
