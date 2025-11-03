@@ -1236,8 +1236,8 @@ const sectionItemVariants = {
 export default function App() {
   const [activeSection, setActiveSection] = useState('overview');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const fontSizes = ['text-base', 'text-lg', 'text-xl', 'text-2xl'];
-  const [fontSizeIndex, setFontSizeIndex] = useState(1); // default is 'text-lg'
+  const fontSizes = ['text-base', 'text-lg', 'text-xl', 'text-2xl', 'text-3xl'];
+  const [fontSizeIndex, setFontSizeIndex] = useState(2); // default is 'text-xl' (middle option)
 
   const increaseFontSize = () => {
       setFontSizeIndex(prev => Math.min(prev + 1, fontSizes.length - 1));
