@@ -19,6 +19,32 @@
         }
       }
     </script>
+    <style>
+      /* Custom scrollbar styling for webkit browsers (Chrome, Safari, Edge) */
+      ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #0f172a; /* slate-900 */
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #334155; /* slate-700 */
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #5eead4; /* teal-300 */
+      }
+
+      /* Custom scrollbar styling for Firefox */
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: #334155 #0f172a; /* thumb: slate-700, track: slate-900 */
+      }
+    </style>
   </head>
   <body class="bg-slate-900 text-slate-300 font-sans antialiased">
     <div id="root"></div>
