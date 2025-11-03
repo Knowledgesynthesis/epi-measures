@@ -684,27 +684,73 @@ const contentSections = [
       <BirthRateCalculator key="br-calc" />,
 
       <h3 key="asfr1" className="text-2xl font-bold text-slate-100">Age-Specific Fertility Rate (ASFR)</h3>,
-      <p key="asfr2"><Strong>Definition:</Strong> The number of <Strong>live births per 1,000 women</Strong> in a <Strong>specific 5-year age group</Strong> (e.g., 15–19, 20–24, …, 45–49).</p>,
-      <div key="asfr3" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span>ASFR =&nbsp;</span>
-        <Fraction numerator="Births to women in a specific age group" denominator="Number of women in that age group" />
-        <span>&nbsp;× 1,000</span>
+      <p key="asfr2"><Strong>Definition:</Strong></p>,
+      <p key="asfr3">The number of <em className="italic">live births per 1,000 women</em> in a specific <Strong>5-year age group</Strong> (e.g., 15–19, 20–24, …, 40–44).</p>,
+      <div key="asfr4" className="p-4 bg-slate-800/50 rounded-lg text-xl font-mono text-slate-300">
+        <div className="flex items-center justify-center flex-wrap mb-2">
+          <span>ASFR</span>
+          <span className="text-sm align-sub">x</span>
+          <span>&nbsp;=&nbsp;</span>
+          <Fraction numerator="Births to women in age group x" denominator="Number of women in that age group" />
+          <span>&nbsp;× 1,000</span>
+        </div>
       </div>,
-      <ul key="asfr4" className="list-disc list-inside space-y-3 pl-4">
-        <li>Describes fertility <Strong>patterns across different age groups</Strong>.</li>
-        <li>Used to calculate <Strong>Total Fertility Rate (TFR)</Strong>.</li>
-      </ul>,
+      <p key="asfr5"><Strong>Intuitive explanation:</Strong></p>,
+      <p key="asfr6">ASFR shows <em className="italic">how many births per 1,000 women</em> occur each year within each 5-year age band.</p>,
 
-      <h3 key="tfr1" className="text-2xl font-bold text-slate-100">Total Fertility Rate (TFR)</h3>,
-      <p key="tfr2"><Strong>Definition:</Strong> The <Strong>sum of ASFRs</Strong> across all reproductive ages (usually 15–44 years), interpreted as the <Strong>average number of children a woman would have</Strong> if she experienced the current ASFRs throughout her reproductive years.</p>,
-      <div key="tfr3" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-          <span>TFR = ∑ ASFRs × width of each age interval (e.g., 5 years)</span>
+      <h3 key="tfr1" className="text-2xl font-bold text-slate-100 mt-8">Total Fertility Rate (TFR)</h3>,
+      <p key="tfr2"><Strong>Definition:</Strong></p>,
+      <p key="tfr3">The <Strong>sum of ASFRs</Strong> across all reproductive ages (usually <Strong>15–44 years</Strong>), <Strong>weighted by the width of each age interval</Strong> (typically 5 years).<br/>
+      It represents the <em className="italic">average number of children a woman would have</em> over her lifetime if current fertility rates persist.</p>,
+      <div key="tfr4" className="p-4 bg-slate-800/50 rounded-lg text-lg font-mono text-slate-300 space-y-3">
+        <div className="flex items-center justify-center flex-wrap">
+          <span>TFR = ∑ (ASFR</span>
+          <span className="text-sm align-sub">x</span>
+          <span>&nbsp;× n)</span>
+        </div>
+        <p className="text-center text-sm text-slate-400">When all age intervals are 5 years wide:</p>
+        <div className="flex items-center justify-center flex-wrap">
+          <span>TFR = 5 × ∑ ASFR</span>
+          <span className="text-sm align-sub">x</span>
+        </div>
       </div>,
-      <ul key="tfr4" className="list-disc list-inside space-y-3 pl-4">
-        <li>Expressed as <Strong>children per woman</Strong>.</li>
-        <li>Represents a <Strong>lifetime fertility measure</Strong>, not a rate per year.</li>
-      </ul>,
-      <p key="tfr5"><Strong>Key distinction:</Strong> GFR is a <Strong>one-year rate</Strong>. TFR is a <Strong>lifetime summary</Strong> derived from age-specific rates.</p>,
+      <p key="tfr5"><Strong>Intuitive explanation:</Strong></p>,
+      <p key="tfr6">Since each ASFR is a <em className="italic">rate per year</em>, multiplying by the number of years in each age band (usually 5) converts it to <em className="italic">births per woman</em> over that period.<br/>
+      Summing across all ages gives the total lifetime fertility per woman.</p>,
+
+      <h3 key="tfr-ex1" className="text-2xl font-bold text-slate-100 mt-8">Example</h3>,
+      <div key="tfr-ex2" className="overflow-x-auto">
+        <table className="w-full border-collapse bg-slate-800/30 rounded-lg overflow-hidden">
+          <thead>
+            <tr className="bg-slate-700/50">
+              <th className="p-3 text-left border border-slate-700/50 font-semibold text-slate-100">Age Group (years)</th>
+              <th className="p-3 text-left border border-slate-700/50 font-semibold text-slate-100">ASFR (births per 1,000 women)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td className="p-3 border border-slate-700/50">15–19</td><td className="p-3 border border-slate-700/50 font-mono">25</td></tr>
+            <tr><td className="p-3 border border-slate-700/50">20–24</td><td className="p-3 border border-slate-700/50 font-mono">90</td></tr>
+            <tr><td className="p-3 border border-slate-700/50">25–29</td><td className="p-3 border border-slate-700/50 font-mono">110</td></tr>
+            <tr><td className="p-3 border border-slate-700/50">30–34</td><td className="p-3 border border-slate-700/50 font-mono">80</td></tr>
+            <tr><td className="p-3 border border-slate-700/50">35–39</td><td className="p-3 border border-slate-700/50 font-mono">40</td></tr>
+            <tr><td className="p-3 border border-slate-700/50">40–44</td><td className="p-3 border border-slate-700/50 font-mono">10</td></tr>
+          </tbody>
+        </table>
+      </div>,
+      <div key="tfr-ex3" className="p-4 bg-slate-800/50 rounded-lg font-mono text-slate-300 space-y-3">
+        <div className="flex items-center justify-center flex-wrap">
+          <span>∑ ASFR</span>
+          <span className="text-sm align-sub">x</span>
+          <span>&nbsp;= 25 + 90 + 110 + 80 + 40 + 10 = 355</span>
+        </div>
+        <p className="text-center text-sm text-slate-400">Then, applying the formula:</p>
+        <div className="flex items-center justify-center flex-wrap text-lg">
+          <span>TFR = (5 × 355) / 1,000 = 1.775</span>
+        </div>
+      </div>,
+      <p key="tfr-ex4" className="p-3 bg-teal-900/40 border-l-4 border-teal-500 rounded-r-lg"><Strong>✅ Total Fertility Rate (TFR) = 1.78 children per woman</Strong></p>,
+      <p key="tfr-ex5"><Strong>Key takeaway:</Strong></p>,
+      <p key="tfr-ex6">TFR ≈ 1.8 means that, on average, each woman would have 1.8 children over her lifetime if current age-specific fertility rates remained constant.</p>,
       
       <h3 key="fd1" className="text-2xl font-bold text-slate-100">Fetal Death (Stillbirth) Rate</h3>,
       <p key="fd2"><Strong>Definition:</Strong> The proportion of <Strong>fetal deaths</Strong> at or beyond a specified gestational age (e.g., ≥20 weeks, ≥22 weeks, or ≥28 weeks — depending on national or WHO definition) per <Strong>1,000 total births (live + fetal)</Strong>.</p>,
