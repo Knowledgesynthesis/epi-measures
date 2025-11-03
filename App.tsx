@@ -86,11 +86,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ sections, activeSection, increa
             <aside className={`2xl:hidden fixed top-0 right-0 h-screen w-80 bg-slate-900 border-l border-slate-700/50 z-50 transform transition-transform duration-300 ease-in-out ${
                 isOpen ? 'translate-x-0' : 'translate-x-full'
             }`}>
-                <div className="p-6">
+                <div className="p-4">
                     {/* Close button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-200 transition"
+                        className="absolute top-3 right-3 p-2 text-slate-400 hover:text-slate-200 transition"
                         aria-label="Close menu"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
@@ -98,14 +98,13 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ sections, activeSection, increa
                         </svg>
                     </button>
 
-                    <nav className="overflow-y-auto h-full pr-4 pt-8">
-                        <div className="mb-6 pb-4 border-b border-slate-700/50">
-                            <h3 className="font-semibold text-slate-200 mb-2">Text Size</h3>
+                    <nav className="overflow-y-auto h-full pr-2 pt-4">
+                        <div className="mb-3">
                             <div className="flex items-center gap-2">
                                 <button
                                     onClick={decreaseFontSize}
                                     disabled={!canDecrease}
-                                    className="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition font-semibold"
+                                    className="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition font-semibold text-sm"
                                     aria-label="Decrease font size"
                                 >
                                     A-
@@ -113,21 +112,20 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ sections, activeSection, increa
                                 <button
                                     onClick={increaseFontSize}
                                     disabled={!canIncrease}
-                                    className="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition font-semibold"
+                                    className="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition font-semibold text-sm"
                                     aria-label="Increase font size"
                                 >
                                     A+
                                 </button>
                             </div>
                         </div>
-                        <h3 className="font-semibold text-slate-200 mb-4">On this page</h3>
-                        <ul className="space-y-2.5">
+                        <ul className="space-y-1">
                             {sections.map(section => (
                                 <li key={section.id}>
                                     <a
                                         href={`#${section.id}`}
                                         onClick={(e) => handleLinkClick(e, section.id)}
-                                        className={`block border-l-2 pl-4 transition-colors duration-200 ${
+                                        className={`block border-l-2 pl-3 py-1.5 transition-colors duration-200 text-sm ${
                                             activeSection === section.id
                                             ? 'border-teal-400 text-teal-300 font-semibold'
                                             : 'border-slate-700 text-slate-400 hover:text-slate-200 hover:border-slate-500'
@@ -160,15 +158,14 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ sections, activeSecti
     };
 
     return (
-        <aside className="hidden 2xl:block fixed top-0 left-0 h-screen w-72 p-8 pt-24 text-sm">
-            <nav className="overflow-y-auto h-full pr-4">
-                 <div className="mb-6 pb-4 border-b border-slate-700/50">
-                    <h3 className="font-semibold text-slate-200 mb-2">Text Size</h3>
+        <aside className="hidden 2xl:block fixed top-0 left-0 h-screen w-72 p-6 pt-20 text-sm">
+            <nav className="overflow-y-auto h-full pr-2">
+                 <div className="mb-3">
                     <div className="flex items-center gap-2">
                         <button
                             onClick={decreaseFontSize}
                             disabled={!canDecrease}
-                            className="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition font-semibold"
+                            className="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition font-semibold text-sm"
                             aria-label="Decrease font size"
                         >
                             A-
@@ -176,21 +173,20 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ sections, activeSecti
                         <button
                             onClick={increaseFontSize}
                             disabled={!canIncrease}
-                            className="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition font-semibold"
+                            className="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition font-semibold text-sm"
                             aria-label="Increase font size"
                         >
                             A+
                         </button>
                     </div>
                 </div>
-                <h3 className="font-semibold text-slate-200 mb-4">On this page</h3>
-                <ul className="space-y-2.5">
+                <ul className="space-y-1">
                     {sections.map(section => (
                         <li key={section.id}>
                             <a
                                 href={`#${section.id}`}
                                 onClick={(e) => handleLinkClick(e, section.id)}
-                                className={`block border-l-2 pl-4 transition-colors duration-200 ${
+                                className={`block border-l-2 pl-3 py-1.5 transition-colors duration-200 text-sm ${
                                     activeSection === section.id
                                     ? 'border-teal-400 text-teal-300 font-semibold'
                                     : 'border-slate-700 text-slate-400 hover:text-slate-200 hover:border-slate-500'
