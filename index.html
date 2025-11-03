@@ -44,6 +44,23 @@
         scrollbar-width: thin;
         scrollbar-color: #334155 #0f172a; /* thumb: slate-700, track: slate-900 */
       }
+
+      /* Hamburger button styling - transparent on hover-capable devices, opaque on touch devices */
+      .hamburger-btn {
+        background-color: rgba(30, 41, 59, 0.2) !important; /* slate-800 at 20% opacity */
+        backdrop-filter: blur(4px);
+      }
+
+      .hamburger-btn:hover {
+        background-color: rgba(30, 41, 59, 1) !important; /* slate-800 at 100% opacity */
+      }
+
+      /* On touch devices (no hover capability), keep button always visible */
+      @media (hover: none) {
+        .hamburger-btn {
+          background-color: rgba(30, 41, 59, 1) !important; /* Always opaque on touch devices */
+        }
+      }
     </style>
   </head>
   <body class="bg-slate-900 text-slate-300 font-sans antialiased">

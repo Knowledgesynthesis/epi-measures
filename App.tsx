@@ -1300,7 +1300,7 @@ export default function App() {
       {/* Hamburger Menu Button */}
       <button
         onClick={() => setIsMobileMenuOpen(true)}
-        className="2xl:hidden fixed top-6 right-6 z-30 p-3 bg-slate-800 hover:bg-slate-700 rounded-lg shadow-lg transition"
+        className="hamburger-btn 2xl:hidden fixed top-6 right-6 z-30 p-3 rounded-lg shadow-lg transition-all duration-300"
         aria-label="Open menu"
       >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-slate-200">
