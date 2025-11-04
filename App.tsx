@@ -18,6 +18,15 @@ const Strong: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <strong className="font-semibold text-teal-400">{children}</strong>
 );
 
+// Wrapper for math formulas with fixed size (text-xl, size #2 out of 5)
+const MathBlock: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
+  <div className={`text-xl ${className}`}>{children}</div>
+);
+
+const MathInline: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <span className="text-xl">{children}</span>
+);
+
 interface TableOfContentsProps {
     sections: { id: string; title: string }[];
     activeSection: string;
@@ -221,18 +230,18 @@ const contentSections = [
     content: [
       <p key="1"><Strong>Definition:</Strong> The number of events in a defined time divided by the <Strong>average population at risk</Strong> during that interval, often multiplied by a constant (e.g., 1,000 or 100,000).</p>,
       <h3 key="2" className="text-xl font-semibold text-slate-100">General Form:</h3>,
-      <div key="3" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span>Rate =&nbsp;</span>
-        <Fraction numerator="Events" denominator="Population" />
-        <span>&nbsp;× k per unit time</span>
+      <div key="3" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Rate} = \frac{\text{Events}}{\text{Population}} \times k \text{ per unit time}" />
+        </MathBlock>
       </div>,
       <p key="4">Rates standardize counts to a <Strong>population</Strong> (and often time) and reflect the <Strong>tempo or timing</Strong> of events.</p>,
       <h3 key="5" className="text-xl font-semibold text-slate-100">Example:</h3>,
       <p key="6">50 new TB cases in a city of 500,000 in 1 year →</p>,
-      <div key="7" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span>Incidence rate =&nbsp;</span>
-        <Fraction numerator="50" denominator="500,000" />
-        <span>&nbsp;× 100,000 = 10 per 100,000 per year</span>
+      <div key="7" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Incidence rate} = \frac{50}{500{,}000} \times 100{,}000 = 10 \text{ per } 100{,}000 \text{ per year}" />
+        </MathBlock>
       </div>,
     ],
   },
@@ -242,9 +251,10 @@ const contentSections = [
     content: [
       <p key="1"><Strong>Definition:</Strong> The <Strong>proportion</Strong> of initially unaffected people who experience the event during a specified period in a fixed cohort.</p>,
       <h3 key="2" className="text-xl font-semibold text-slate-100">Formula:</h3>,
-      <div key="3" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span>Risk =&nbsp;</span>
-        <Fraction numerator="New events" denominator="Number initially at risk" />
+      <div key="3" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Risk} = \frac{\text{New events}}{\text{Number initially at risk}}" />
+        </MathBlock>
       </div>,
        <div key="q1-container">
          <Question
@@ -340,14 +350,18 @@ const contentSections = [
       <p key="5">This figure is based on the fundamental relationship between <em className="italic">risk (cumulative incidence)</em> and <em className="italic">rate (incidence rate or hazard)</em> when events occur at a constant rate over time:</p>,
 
       <div key="6" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
-        <BlockMath math="\text{Risk} = 1 - e^{-(\text{Rate} \times \text{Time})}" />
-        <BlockMath math="\text{Rate} = -\ln(1 - \text{Risk}) / \text{Time}" />
+        <MathBlock>
+          <BlockMath math="\text{Risk} = 1 - e^{-(\text{Rate} \times \text{Time})}" />
+          <BlockMath math="\text{Rate} = -\ln(1 - \text{Risk}) / \text{Time}" />
+        </MathBlock>
       </div>,
 
       <p key="7">For this chart, <Strong>Time = 1 unit</Strong>, so it simplifies to:</p>,
 
       <div key="8" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
-        <BlockMath math="\text{Rate} = -\ln(1 - \text{Risk})" />
+        <MathBlock>
+          <BlockMath math="\text{Rate} = -\ln(1 - \text{Risk})" />
+        </MathBlock>
       </div>,
 
       <p key="9" className="font-semibold text-slate-200"><Strong>Interpretation:</Strong></p>,
@@ -367,9 +381,10 @@ const contentSections = [
       <p key="1"><Strong>Definition:</Strong> Measures the occurrence of <Strong>new cases</Strong> of a disease among those initially free of the outcome during a specified period. It quantifies the <Strong>risk</Strong> or <Strong>rate</Strong> of developing disease.</p>,
       
       <h3 key="2" className="text-2xl font-bold text-slate-100">Cumulative Incidence (Risk)</h3>,
-      <div key="3" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span>Cumulative Incidence (CI) =&nbsp;</span>
-        <Fraction numerator="New cases during a specified period" denominator="Number of people initially at risk" />
+      <div key="3" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Cumulative Incidence (CI)} = \frac{\text{New cases during a specified period}}{\text{Number of people initially at risk}}" />
+        </MathBlock>
       </div>,
       <ul key="4" className="list-disc list-inside space-y-3 pl-4">
         <li>Represents the <Strong>probability</Strong> of developing disease over a defined time period.</li>
@@ -384,9 +399,10 @@ const contentSections = [
       </ul>,
 
       <h3 key="5" className="text-2xl font-bold text-slate-100">Incidence Density (Incidence Rate or Person-Time Rate)</h3>,
-      <div key="6" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span>Incidence Density (IR) =&nbsp;</span>
-        <Fraction numerator="New cases during a specified time period" denominator="Total person-time at risk during that period" />
+      <div key="6" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Incidence Density (IR)} = \frac{\text{New cases during a specified time period}}{\text{Total person-time at risk during that period}}" />
+        </MathBlock>
       </div>,
       <ul key="7" className="list-disc list-inside space-y-3 pl-4">
         <li>Expressed as cases <Strong>per person-time</Strong>, e.g., <em className="italic">per person-year</em> or <em className="italic">per 1,000 person-months</em>.</li>
@@ -432,9 +448,10 @@ const contentSections = [
     title: 'Prevalence',
     content: [
       <p key="1"><Strong>Definition:</Strong> Measures the <Strong>proportion of existing cases</Strong> (old + new) in a population at a specific point or during a defined period. It represents the <Strong>burden of disease</Strong> at that moment.</p>,
-      <div key="2" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span>Prevalence (P) =&nbsp;</span>
-        <Fraction numerator="Existing cases" denominator="Total population" />
+      <div key="2" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Prevalence (P)} = \frac{\text{Existing cases}}{\text{Total population}}" />
+        </MathBlock>
       </div>,
       <ul key="3" className="list-disc list-inside space-y-3 pl-4">
         <li><Strong>Point prevalence:</Strong> Disease at a single point in time.</li>
@@ -448,9 +465,10 @@ const contentSections = [
     title: 'Relationship: Incidence, Prevalence & Duration',
     content: [
       <p key="1">In steady-state conditions (stable incidence and duration), the relationship is:</p>,
-      <div key="2" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span>P =&nbsp;</span>
-        <Fraction numerator="I × D" denominator="1 + (I × D)" />
+      <div key="2" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="P = \frac{I \times D}{1 + (I \times D)}" />
+        </MathBlock>
       </div>,
       <p key="3">where:</p>,
       <ul key="4" className="list-['–'] list-inside space-y-1 pl-4 font-mono">
@@ -497,26 +515,26 @@ const contentSections = [
     content: [
       <h3 key="m1" className="text-2xl font-bold text-slate-100">Mortality</h3>,
       <p key="m2"><Strong>Definition:</Strong> Measures the <Strong>frequency of death</Strong> in a population during a specified period of time.</p>,
-      <div key="m3" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-          <span>Mortality rate =&nbsp;</span>
-          <Fraction numerator="Number of deaths during a specified time period" denominator="Average number of people alive during that time" />
-          <span>&nbsp;× k</span>
+      <div key="m3" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Mortality rate} = \frac{\text{Number of deaths during a specified time period}}{\text{Average number of people alive during that time}} \times k" />
+        </MathBlock>
       </div>,
       <p key="m4">Commonly scaled per <Strong>1,000</Strong> or <Strong>100,000</Strong> population.</p>,
       <p key="m5">If the numerator specifies deaths <Strong>from a particular disease</Strong>, it becomes the <Strong>disease-specific mortality rate</Strong>.</p>,
-      <div key="m6" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-          <span>Disease-specific mortality rate =&nbsp;</span>
-          <Fraction numerator="Deaths from disease X in a given period" denominator="Population at midyear (or average population)" />
-          <span>&nbsp;× k</span>
+      <div key="m6" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Disease-specific mortality rate} = \frac{\text{Deaths from disease X in a given period}}{\text{Population at midyear (or average population)}} \times k" />
+        </MathBlock>
       </div>,
       <p key="m7" className="p-3 bg-sky-900/40 border-l-4 border-sky-500 rounded-r-lg"><Strong>Interpretation:</Strong> Mortality measures the <Strong>risk of dying</Strong> in the entire population — not just among those who already have the disease.</p>,
       
       <h3 key="c1" className="text-2xl font-bold text-slate-100">Case-Fatality Rate (CFR)</h3>,
       <p key="c2"><Strong>Definition:</Strong> Proportion of individuals with a disease who die from that disease within a specified period.</p>,
-      <div key="c3" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-          <span>Case-fatality rate (CFR) =&nbsp;</span>
-          <Fraction numerator="Deaths among cases" denominator="Total number of cases" />
-          <span>&nbsp;× 100%</span>
+      <div key="c3" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Case-fatality rate (CFR)} = \frac{\text{Deaths among cases}}{\text{Total number of cases}} \times 100\%" />
+        </MathBlock>
       </div>,
       <ul key="c4" className="list-disc list-inside space-y-3 pl-4">
           <li>Measures <Strong>disease severity (prognosis)</Strong> rather than frequency.</li>
@@ -525,19 +543,19 @@ const contentSections = [
       </ul>,
       <h4 key="c5" className="text-xl font-semibold text-slate-100">Example</h4>,
       <p key="c6">If <Strong>200</Strong> people are diagnosed with Disease X and <Strong>10</Strong> die within 30 days:</p>,
-      <div key="c7" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-          <span>CFR =&nbsp;</span>
-          <Fraction numerator="10" denominator="200" />
-          <span>&nbsp;× 100% = 5%</span>
+      <div key="c7" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{CFR} = \frac{10}{200} \times 100\% = 5\%" />
+        </MathBlock>
       </div>,
       <p key="c8">That means <Strong>5% of diagnosed patients</Strong> died within the first 30 days. So the 30-day case-fatality rate (CFR) = <Strong>5%</Strong>.</p>,
       
       <h3 key="l1" className="text-2xl font-bold text-slate-100">Example: Linking Mortality and CFR</h3>,
       <p key="l2">If the city population is <Strong>1,000,000</Strong>, and 10 people die from Disease X within 30 days:</p>,
-      <div key="l3" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-          <span>Cause-specific mortality rate =&nbsp;</span>
-          <Fraction numerator="10" denominator="1,000,000" />
-          <span>&nbsp;× 100,000 = 1 per 100,000</span>
+      <div key="l3" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Cause-specific mortality rate} = \frac{10}{1{,}000{,}000} \times 100{,}000 = 1 \text{ per } 100{,}000" />
+        </MathBlock>
       </div>,
       <p key="l4">This is <Strong>linked</Strong> to the previous example:</p>,
       <ul key="l5" className="list-disc list-inside space-y-3 pl-4">
@@ -551,17 +569,19 @@ const contentSections = [
       </ul>,
       
       <h3 key="cr1" className="text-2xl font-bold text-slate-100">Complication Rate</h3>,
-      <div key="cr2" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-          <span>Complication rate =&nbsp;</span>
-          <Fraction numerator="Patients with a complication" denominator="Patients exposed to the disease or treatment" />
+      <div key="cr2" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Complication rate} = \frac{\text{Patients with a complication}}{\text{Patients exposed to the disease or treatment}}" />
+        </MathBlock>
       </div>,
       <p key="cr3">Represents the <Strong>proportion</Strong> of patients who experience a complication of a disease or its treatment. Requires sufficient follow-up.</p>,
       
       <h3 key="pm1" className="text-2xl font-bold text-slate-100">Proportional Mortality</h3>,
       <p key="pm2"><Strong>Definition:</Strong></p>,
-      <div key="pm3" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-          <span>Proportional mortality =&nbsp;</span>
-          <Fraction numerator="Deaths due to a specific disease in a time period" denominator="Total deaths during that same period" />
+      <div key="pm3" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Proportional mortality} = \frac{\text{Deaths due to a specific disease in a time period}}{\text{Total deaths during that same period}}" />
+        </MathBlock>
       </div>,
       <p key="pm4">Indicates the <Strong>proportion of all deaths</Strong> in a population that were due to a particular cause.</p>,
       <div key="pm5" className="p-3 bg-yellow-900/50 border-l-4 border-yellow-500 rounded-r-lg text-yellow-300">
@@ -638,10 +658,10 @@ const contentSections = [
     content: [
       <h3 key="br1" className="text-2xl font-bold text-slate-100">Crude Birth Rate (CBR)</h3>,
       <p key="br2"><Strong>Definition:</Strong> The total number of <Strong>live births in a year</Strong> per <Strong>midyear (average) population</Strong>, scaled by 1,000.</p>,
-      <div key="br3" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span>Crude Birth Rate (CBR) =&nbsp;</span>
-        <Fraction numerator="Live births in a year" denominator="Midyear total population" />
-        <span>&nbsp;× 1,000</span>
+      <div key="br3" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Crude Birth Rate (CBR)} = \frac{\text{Live births in a year}}{\text{Midyear total population}} \times 1{,}000" />
+        </MathBlock>
       </div>,
       <ul key="br4" className="list-disc list-inside space-y-3 pl-4">
         <li>Includes the entire population (men, women, children, elderly) — not just those capable of giving birth.</li>
@@ -649,18 +669,18 @@ const contentSections = [
       </ul>,
       <h4 key="br5" className="text-xl font-semibold text-slate-100">Example:</h4>,
       <p key="br6">If a city has <Strong>8,000 live births</Strong> and a <Strong>population of 600,000</Strong>:</p>,
-      <div key="br7" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span>CBR =&nbsp;</span>
-        <Fraction numerator="8,000" denominator="600,000" />
-        <span>&nbsp;× 1,000 = 13.3 per 1,000 population</span>
+      <div key="br7" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{CBR} = \frac{8{,}000}{600{,}000} \times 1{,}000 = 13.3 \text{ per } 1{,}000 \text{ population}" />
+        </MathBlock>
       </div>,
 
       <h3 key="gfr1" className="text-2xl font-bold text-slate-100">General Fertility Rate (GFR)</h3>,
       <p key="gfr2"><Strong>Definition:</Strong> The number of <Strong>live births in a year</Strong> per <Strong>1,000 women of reproductive age</Strong> (typically 15–44 or 10–49 years) at midyear.</p>,
-      <div key="gfr3" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span>General Fertility Rate (GFR) =&nbsp;</span>
-        <Fraction numerator="Live births in a year" denominator="Women aged 15–44 at midyear" />
-        <span>&nbsp;× 1,000</span>
+      <div key="gfr3" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{General Fertility Rate (GFR)} = \frac{\text{Live births in a year}}{\text{Women aged 15–44 at midyear}} \times 1{,}000" />
+        </MathBlock>
       </div>,
       <ul key="gfr4" className="list-disc list-inside space-y-3 pl-4">
         <li>Focuses on women <Strong>at risk of giving birth</Strong> — more precise than the crude birth rate.</li>
@@ -672,10 +692,10 @@ const contentSections = [
         <li>Live births = 8,000</li>
         <li>Women aged 15–44 = 150,000</li>
       </ul>,
-      <div key="gfr8" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span>GFR =&nbsp;</span>
-        <Fraction numerator="8,000" denominator="150,000" />
-        <span>&nbsp;× 1,000 = 53.3 per 1,000 women aged 15–44</span>
+      <div key="gfr8" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{GFR} = \frac{8{,}000}{150{,}000} \times 1{,}000 = 53.3 \text{ per } 1{,}000 \text{ women aged 15–44}" />
+        </MathBlock>
       </div>,
       <p key="gfr9" className="p-3 bg-sky-900/40 border-l-4 border-sky-500 rounded-r-lg"><Strong>✅ Explanation:</Strong> The 53.3 value means that for every 1,000 women aged 15–44, there were approximately <Strong>53 live births</Strong> in that year.</p>,
       
@@ -684,10 +704,10 @@ const contentSections = [
       <h3 key="asfr1" className="text-2xl font-bold text-slate-100">Age-Specific Fertility Rate (ASFR)</h3>,
       <p key="asfr2"><Strong>Definition:</Strong></p>,
       <p key="asfr3">The number of <em className="italic">live births per 1,000 women</em> in a specific <Strong>5-year age group</Strong> (e.g., 15–19, 20–24, …, 40–44).</p>,
-      <div key="asfr4" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span><InlineMath math="\text{ASFR}_x" />&nbsp;=&nbsp;</span>
-        <Fraction numerator="Births to women in age group x" denominator="Number of women in that age group" />
-        <span>&nbsp;× 1,000</span>
+      <div key="asfr4" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{ASFR}_x = \frac{\text{Births to women in age group x}}{\text{Number of women in that age group}} \times 1{,}000" />
+        </MathBlock>
       </div>,
       <p key="asfr5"><Strong>Intuitive explanation:</Strong></p>,
       <p key="asfr6">ASFR shows <em className="italic">how many births per 1,000 women</em> occur each year within each 5-year age band.</p>,
@@ -697,9 +717,11 @@ const contentSections = [
       <p key="tfr3">The <Strong>sum of ASFRs</Strong> across all reproductive ages (usually <Strong>15–44 years</Strong>), <Strong>weighted by the width of each age interval</Strong> (typically 5 years).<br/>
       It represents the <em className="italic">average number of children a woman would have</em> over her lifetime if current fertility rates persist.</p>,
       <div key="tfr4" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
-        <BlockMath math="\text{TFR} = \sum (\text{ASFR}_x \times n)" />
-        <p className="text-center text-sm text-slate-400 mt-3">When all age intervals are 5 years wide:</p>
-        <BlockMath math="\text{TFR} = 5 \times \sum \text{ASFR}_x" />
+        <MathBlock>
+          <BlockMath math="\text{TFR} = \sum (\text{ASFR}_x \times n)" />
+          <p className="text-center text-sm text-slate-400 mt-3">When all age intervals are 5 years wide:</p>
+          <BlockMath math="\text{TFR} = 5 \times \sum \text{ASFR}_x" />
+        </MathBlock>
       </div>,
       <p key="tfr5"><Strong>Intuitive explanation:</Strong></p>,
       <p key="tfr6">Since each ASFR is a <em className="italic">rate per year</em>, multiplying by the number of years in each age band (usually 5) converts it to <em className="italic">births per woman</em> over that period.<br/>
@@ -725,9 +747,11 @@ const contentSections = [
         </table>
       </div>,
       <div key="tfr-ex3" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
-        <BlockMath math="\sum \text{ASFR}_x = 25 + 90 + 110 + 80 + 40 + 10 = 355" />
-        <p className="text-center text-sm text-slate-400 mt-3">Then, applying the formula:</p>
-        <BlockMath math="\text{TFR} = (5 \times 355) / 1{,}000 = 1.775" />
+        <MathBlock>
+          <BlockMath math="\sum \text{ASFR}_x = 25 + 90 + 110 + 80 + 40 + 10 = 355" />
+          <p className="text-center text-sm text-slate-400 mt-3">Then, applying the formula:</p>
+          <BlockMath math="\text{TFR} = (5 \times 355) / 1{,}000 = 1.775" />
+        </MathBlock>
       </div>,
       <p key="tfr-ex4" className="p-3 bg-teal-900/40 border-l-4 border-teal-500 rounded-r-lg"><Strong>✅ Total Fertility Rate (TFR) = 1.78 children per woman</Strong></p>,
       <p key="tfr-ex5"><Strong>Key takeaway:</Strong></p>,
@@ -735,10 +759,10 @@ const contentSections = [
       
       <h3 key="fd1" className="text-2xl font-bold text-slate-100">Fetal Death (Stillbirth) Rate</h3>,
       <p key="fd2"><Strong>Definition:</Strong> The proportion of <Strong>fetal deaths</Strong> at or beyond a specified gestational age (e.g., ≥20 weeks, ≥22 weeks, or ≥28 weeks — depending on national or WHO definition) per <Strong>1,000 total births (live + fetal)</Strong>.</p>,
-       <div key="fd3" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span>Fetal Death Rate =&nbsp;</span>
-        <Fraction numerator="Fetal deaths ≥ threshold gestational age" denominator="Fetal deaths ≥ threshold + Live births" />
-        <span>&nbsp;× 1,000</span>
+       <div key="fd3" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Fetal Death Rate} = \frac{\text{Fetal deaths} \geq \text{threshold gestational age}}{\text{Fetal deaths} \geq \text{threshold} + \text{Live births}} \times 1{,}000" />
+        </MathBlock>
       </div>,
       <p key="fd4"><Strong>Thresholds:</Strong></p>,
       <ul key="fd5" className="list-['–'] list-inside space-y-1 pl-4">
@@ -749,27 +773,27 @@ const contentSections = [
 
       <h3 key="pmr1" className="text-2xl font-bold text-slate-100">Perinatal Mortality Rate</h3>,
       <p key="pmr2"><Strong>Definition:</Strong> Includes <Strong>fetal deaths (stillbirths)</Strong> plus <Strong>deaths in the first 7 days of life</Strong>, divided by all births (live + fetal), per 1,000.</p>,
-       <div key="pmr3" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span>Perinatal Mortality Rate =&nbsp;</span>
-        <Fraction numerator="Stillbirths + deaths &lt;7 days" denominator="Stillbirths + live births" />
-        <span>&nbsp;× 1,000</span>
+       <div key="pmr3" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Perinatal Mortality Rate} = \frac{\text{Stillbirths} + \text{deaths} < 7 \text{ days}}{\text{Stillbirths} + \text{live births}} \times 1{,}000" />
+        </MathBlock>
       </div>,
       <p key="pmr4"><Strong>Notes:</Strong> Sometimes defined with 28 days (alternative WHO definition). Reflects combined outcomes of <Strong>pregnancy and early neonatal care</Strong>.</p>,
 
       <h3 key="ndr1" className="text-2xl font-bold text-slate-100">Neonatal Death Rate</h3>,
       <p key="ndr2"><Strong>Definition:</Strong> Deaths of infants <Strong>in the first 28 days of life</Strong> per 1,000 live births.</p>,
-      <div key="ndr3" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span>Neonatal Death Rate =&nbsp;</span>
-        <Fraction numerator="Deaths in first 28 days" denominator="Live births" />
-        <span>&nbsp;× 1,000</span>
+      <div key="ndr3" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Neonatal Death Rate} = \frac{\text{Deaths in first 28 days}}{\text{Live births}} \times 1{,}000" />
+        </MathBlock>
       </div>,
 
       <h3 key="idr1" className="text-2xl font-bold text-slate-100">Infant Death Rate</h3>,
       <p key="idr2"><Strong>Definition:</Strong> Deaths of infants <Strong>under 1 year of age</Strong> per 1,000 live births.</p>,
-       <div key="idr3" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap">
-        <span>Infant Death Rate =&nbsp;</span>
-        <Fraction numerator="Deaths under 1 year" denominator="Live births" />
-        <span>&nbsp;× 1,000</span>
+       <div key="idr3" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{Infant Death Rate} = \frac{\text{Deaths under 1 year}}{\text{Live births}} \times 1{,}000" />
+        </MathBlock>
       </div>,
        <ul key="idr4" className="list-disc list-inside space-y-3 pl-4">
         <li>Used as a key indicator of <Strong>population health and healthcare quality</Strong>.</li>
@@ -925,12 +949,10 @@ const contentSections = [
 
       <h3 key="ypll-rate-h" className="text-2xl font-bold text-slate-100 mt-8">Converting Total YPLL to a YPLL Rate</h3>,
       <p key="ypll-rate-p1">To compare across populations, YPLL is often expressed as a <Strong>rate</Strong>:</p>,
-      <div key="ypll-rate-formula1" className="p-4 bg-slate-800/50 rounded-lg text-xl font-mono text-slate-300">
-        <div className="flex items-center justify-center flex-wrap">
-          <span>YPLL Rate =&nbsp;</span>
-          <Fraction numerator="Total YPLL" denominator="Population under benchmark age" />
-          <span>&nbsp;× k</span>
-        </div>
+      <div key="ypll-rate-formula1" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <MathBlock>
+          <BlockMath math="\text{YPLL Rate} = \frac{\text{Total YPLL}}{\text{Population under benchmark age}} \times k" />
+        </MathBlock>
       </div>,
       <p key="ypll-rate-p2">where <em className="italic">k</em> is usually 100,000.</p>,
 
@@ -1043,12 +1065,14 @@ const contentSections = [
       <p key="lr-p1"><Strong>Definition:</Strong></p>,
       <p key="lr-p2">The <em className="italic">probability</em> that an individual will develop a disease (or die from it) during their lifetime, assuming current rates persist and adjusting for competing causes of death.</p>,
       <div key="lr-formula" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
-        <BlockMath math="\text{Lifetime Risk} = \int_0^A i(a) \times s(a) \, da" />
+        <MathBlock>
+          <BlockMath math="\text{Lifetime Risk} = \int_0^A i(a) \times s(a) \, da" />
+        </MathBlock>
       </div>,
       <p key="lr-where">where</p>,
       <ul key="lr-where-ul" className="list-['–'] list-inside space-y-1 pl-4 text-sm">
-        <li><InlineMath math="i(a)" /> = age-specific incidence rate</li>
-        <li><InlineMath math="s(a)" /> = probability of surviving to age <InlineMath math="a" /></li>
+        <li><MathInline><InlineMath math="i(a)" /></MathInline> = age-specific incidence rate</li>
+        <li><MathInline><InlineMath math="s(a)" /></MathInline> = probability of surviving to age <MathInline><InlineMath math="a" /></MathInline></li>
       </ul>,
 
       <h3 key="lr-ex-h" className="text-2xl font-bold text-slate-100 mt-8">Intuitive Example</h3>,
