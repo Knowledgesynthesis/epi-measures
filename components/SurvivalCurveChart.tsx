@@ -5,56 +5,29 @@ const CHART_WIDTH = 500;
 const CHART_HEIGHT = 300;
 const PADDING = 50;
 
-const mapRange = (value: number, inMin: number, inMax: number, outMin: number, outMax: number) =>
-    ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+const data = [
+    { age: 0, survivors: 100000 },
+    { age: 20, survivors: 99800 },
+    { age: 40, survivors: 99400 },
+    { age: 60, survivors: 98500 },
+    { age: 80, survivors: 96000 },
+    { age: 100, survivors: 50000 }, // Extrapolating to show a downward trend
+    { age: 110, survivors: 0 },
+];
 
-// Function to create smooth curve using cardinal splines
-const createSmoothPath = (points: { x: number; y: number }[], tension: number = 0.5) => {
-    if (points.length < 2) return '';
+const mapRange = (value: number, inMin: number, inMax: number, outMin: number, outMax: number) => ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
 
-    let path = `M ${points[0].x},${points[0].y}`;
-
-    for (let i = 0; i < points.length - 1; i++) {
-        const p0 = i > 0 ? points[i - 1] : points[i];
-        const p1 = points[i];
-        const p2 = points[i + 1];
-        const p3 = i < points.length - 2 ? points[i + 2] : p2;
-
-        const cp1x = p1.x + (p2.x - p0.x) / 6 * tension;
-        const cp1y = p1.y + (p2.y - p0.y) / 6 * tension;
-        const cp2x = p2.x - (p3.x - p1.x) / 6 * tension;
-        const cp2y = p2.y - (p3.y - p1.y) / 6 * tension;
-
-        path += ` C ${cp1x},${cp1y} ${cp2x},${cp2y} ${p2.x},${p2.y}`;
-    }
-
-    return path;
-};
+const path = data
+    .map(p => ({
+        x: mapRange(p.age, 0, 110, PADDING, CHART_WIDTH - PADDING),
+        y: mapRange(p.survivors, 0, 100000, CHART_HEIGHT - PADDING, PADDING)
+    }))
+    .map(p => `${p.x},${p.y}`)
+    .join(' ');
 
 export const SurvivalCurveChart: React.FC = () => {
-    // Data from the corrected life table example
-    const data = [
-        { age: 0, survivors: 100000 },
-        { age: 19, survivors: 100000 },
-        { age: 20, survivors: 99800 },
-        { age: 39, survivors: 99800 },
-        { age: 40, survivors: 99401 },
-        { age: 59, survivors: 99401 },
-        { age: 60, survivors: 98407 },
-        { age: 79, survivors: 98407 },
-        { age: 80, survivors: 94471 },
-        { age: 100, survivors: 75577 },
-    ];
-
     const xAxisLabels = [0, 20, 40, 60, 80, 100];
     const yAxisLabels = [0, 25000, 50000, 75000, 100000];
-
-    const points = data.map(p => ({
-        x: mapRange(p.age, 0, 100, PADDING, CHART_WIDTH - PADDING),
-        y: mapRange(p.survivors, 0, 100000, CHART_HEIGHT - PADDING, PADDING)
-    }));
-
-    const path = createSmoothPath(points, 0.5);
 
     return (
         <div className="w-full mt-6 p-4 sm:p-6 bg-slate-900/50 border border-slate-700/50 rounded-lg">
@@ -74,9 +47,7 @@ export const SurvivalCurveChart: React.FC = () => {
                         return (
                             <g key={`y-${label}`}>
                                 <line x1={PADDING - 5} y1={y} x2={CHART_WIDTH - PADDING} y2={y} className="stroke-slate-700/50" strokeDasharray="2 2" />
-                                <text x={PADDING - 10} y={y + 4} textAnchor="end" className="text-xs fill-slate-500">
-                                    {(label / 1000).toFixed(0)}k
-                                </text>
+                                <text x={PADDING - 10} y={y + 4} textAnchor="end" className="text-xs fill-slate-500">{label / 1000}k</text>
                             </g>
                         );
                     })}
@@ -87,27 +58,16 @@ export const SurvivalCurveChart: React.FC = () => {
                         Age (years)
                     </text>
                     {xAxisLabels.map(label => {
-                        const x = mapRange(label, 0, 100, PADDING, CHART_WIDTH - PADDING);
+                        const x = mapRange(label, 0, 110, PADDING, CHART_WIDTH - PADDING);
                         return (
                             <g key={`x-${label}`}>
                                 <line x1={x} y1={CHART_HEIGHT - PADDING} x2={x} y2={CHART_HEIGHT - PADDING + 5} className="stroke-slate-600" strokeWidth="2" />
-                                <text x={x} y={CHART_HEIGHT - PADDING + 20} textAnchor="middle" className="text-xs fill-slate-500">
-                                    {label}
-                                </text>
+                                <text x={x} y={CHART_HEIGHT - PADDING + 20} textAnchor="middle" className="text-xs fill-slate-500">{label}</text>
                             </g>
                         );
                     })}
 
-                    {/* Survival curve */}
-                    <motion.path
-                        d={`M ${path}`}
-                        fill="none"
-                        className="stroke-sky-500"
-                        strokeWidth="2.5"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{ duration: 2, ease: 'easeInOut' }}
-                    />
+                    <motion.path d={`M ${path}`} fill="none" className="stroke-sky-500" strokeWidth="2.5" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, ease: 'easeInOut' }}/>
                 </svg>
             </div>
 
