@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const CHART_WIDTH = 500;
-const CHART_HEIGHT = 300;
-const PADDING = 50;
+const CHART_WIDTH = 700;
+const CHART_HEIGHT = 400;
+const PADDING = 60;
 
 const data = [
     { age: 0, survivors: 100000 },
@@ -42,12 +42,12 @@ export const SurvivalCurveChart: React.FC = () => {
             <h4 className="text-lg font-semibold text-slate-100 mb-4 text-center">Survival Curve from Life Table</h4>
 
             <div className="flex justify-center">
-                <svg viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`} className="w-full max-w-lg" aria-labelledby="chart-title-survival" role="img">
+                <svg viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`} className="w-full max-w-3xl" aria-labelledby="chart-title-survival" role="img">
                     <title id="chart-title-survival">Survival curve showing decline from 100,000 births</title>
 
                     {/* Y Axis */}
                     <line x1={PADDING} y1={PADDING} x2={PADDING} y2={CHART_HEIGHT - PADDING} className="stroke-slate-600" strokeWidth="2" />
-                    <text x={20} y={CHART_HEIGHT/2} textAnchor="middle" transform={`rotate(-90, 20, ${CHART_HEIGHT/2})`} className="text-xs fill-slate-400">
+                    <text x={15} y={CHART_HEIGHT/2} textAnchor="middle" transform={`rotate(-90, 15, ${CHART_HEIGHT/2})`} className="text-xs fill-slate-400">
                         Number of Survivors
                     </text>
                     {yAxisLabels.map(label => {
