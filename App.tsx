@@ -1018,64 +1018,95 @@ const contentSections = [
     title: 'Life Expectancy & Lifetime Risk',
     content: [
       <h3 key="le-h1" className="text-2xl font-bold text-slate-100">Life Expectancy at Birth</h3>,
-      <p key="le-p1"><Strong>Definition:</Strong> Life expectancy at birth is the <Strong>average number of years a newborn is expected to live</Strong> if current <Strong>age-specific mortality rates</Strong> persist throughout their life. It is <Strong>derived from a life table</Strong>, which applies observed mortality rates to a <Strong>hypothetical cohort</Strong> of newborns.</p>,
-      <div key="le-formula" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap text-center">
-        <span>Life Expectancy at Birth = Average age at death given live birth, based on current mortality rates</span>
+      <p key="le-p1"><Strong>Definition:</Strong></p>,
+      <p key="le-p2">Life expectancy at birth is the <em className="italic">average number of years a newborn is expected to live</em> if current age-specific mortality rates remain constant.<br/>
+      It is derived from a <Strong>life table</Strong>, which models survival for a hypothetical cohort (e.g., 100,000 newborns).</p>,
+      <div key="le-formula" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 text-center">
+        <span>Life Expectancy at Birth = Average age at death for that cohort</span>
       </div>,
-      <h4 key="le-kp-h" className="text-xl font-semibold text-slate-100">Key Points</h4>,
+      <p key="le-kp-h"><Strong>Key points:</Strong></p>,
       <ul key="le-kp-ul" className="list-disc list-inside space-y-3 pl-4">
-        <li>Represents the <Strong>mean age at death</Strong> in a population, assuming current mortality patterns continue.</li>
-        <li>Does <Strong>not predict the actual lifespan of any individual</Strong>.</li>
-        <li>As people survive childhood, their <Strong>remaining life expectancy increases</Strong> (conditional survival).</li>
-        <li><Strong>Age-specific life expectancies</Strong> are derived from <Strong>life-table or survival analysis</Strong>.</li>
+        <li>Reflects <em className="italic">population mortality patterns</em>, not individual prediction.</li>
+        <li>Increases with age as people survive earlier risks.</li>
+        <li>Calculated from life-table or survival analysis methods.</li>
       </ul>,
-      
-      <h3 key="lr-h1" className="text-2xl font-bold text-slate-100">Lifetime Risk of Disease</h3>,
-      <p key="lr-p1"><Strong>Definition:</Strong> Lifetime risk is the <Strong>probability that an individual will develop a disease</Strong> (or die from it) <Strong>at any time during their lifetime</Strong>, assuming current age-specific rates persist and adjusting for competing risks (other causes of death).</p>,
-      <div key="lr-formula" className="p-4 bg-slate-800/50 rounded-lg text-xl flex items-center justify-center font-mono text-slate-300 flex-wrap text-center">
-        <span>Lifetime Risk = Integrated age-specific incidence (or mortality) over the life course, adjusted for competing risks</span>
-      </div>,
-      <h4 key="lr-ex-h" className="text-xl font-semibold text-slate-100">Intuitive Example</h4>,
-      <p key="lr-ex-p1">If a disease has a <Strong>constant age-adjusted incidence rate</Strong> of <Strong>1% per decade</Strong> from age 30–80, then over 5 decades (50 years), the approximate <Strong>lifetime risk ≈ 5%</Strong>, assuming no competing causes of death. (A proper estimate uses life-table calculations to adjust for deaths from other causes.)</p>,
 
-      <h3 key="lt-h1" className="text-2xl font-bold text-slate-100">What Is a Life Table?</h3>,
-      <p key="lt-p1">A <Strong>life table</Strong> is a statistical model that describes <Strong>mortality and survival patterns</Strong> in a population. It starts with a <Strong>hypothetical cohort</Strong> (often 100,000 live births) and applies <Strong>age-specific mortality rates</Strong> to estimate:</p>,
-      <ul key="lt-ul1" className="list-disc list-inside space-y-3 pl-4">
-        <li>The <Strong>probability of surviving</Strong> to each age</li>
-        <li>The <Strong>number of deaths</Strong> expected in each age group</li>
-        <li>The <Strong>remaining years of life</Strong> at each age (age-specific life expectancy)</li>
+      <h3 key="le-ex-h" className="text-2xl font-bold text-slate-100 mt-8">🔍 Example: Simplified Life Table</h3>,
+      <div key="le-ex-table" className="overflow-x-auto">
+        <table className="w-full border-collapse bg-slate-800/30 rounded-lg overflow-hidden">
+          <thead>
+            <tr className="bg-slate-700/50">
+              <th className="p-3 text-left border border-slate-700/50 font-semibold text-slate-100">Age Group (years)</th>
+              <th className="p-3 text-left border border-slate-700/50 font-semibold text-slate-100">Death Rate (per 1,000)</th>
+              <th className="p-3 text-left border border-slate-700/50 font-semibold text-slate-100">Survivors (from 100,000)</th>
+              <th className="p-3 text-left border border-slate-700/50 font-semibold text-slate-100">Average Remaining Life (years)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td className="p-3 border border-slate-700/50">0–19</td><td className="p-3 border border-slate-700/50 font-mono">2</td><td className="p-3 border border-slate-700/50 font-mono">100,000</td><td className="p-3 border border-slate-700/50 font-mono">75</td></tr>
+            <tr><td className="p-3 border border-slate-700/50">20–39</td><td className="p-3 border border-slate-700/50 font-mono">4</td><td className="p-3 border border-slate-700/50 font-mono">99,800</td><td className="p-3 border border-slate-700/50 font-mono">58</td></tr>
+            <tr><td className="p-3 border border-slate-700/50">40–59</td><td className="p-3 border border-slate-700/50 font-mono">10</td><td className="p-3 border border-slate-700/50 font-mono">99,400</td><td className="p-3 border border-slate-700/50 font-mono">38</td></tr>
+            <tr><td className="p-3 border border-slate-700/50">60–79</td><td className="p-3 border border-slate-700/50 font-mono">40</td><td className="p-3 border border-slate-700/50 font-mono">98,500</td><td className="p-3 border border-slate-700/50 font-mono">19</td></tr>
+            <tr><td className="p-3 border border-slate-700/50">80+</td><td className="p-3 border border-slate-700/50 font-mono">200</td><td className="p-3 border border-slate-700/50 font-mono">96,000</td><td className="p-3 border border-slate-700/50 font-mono">6</td></tr>
+          </tbody>
+        </table>
+      </div>,
+      <p key="le-ex-result" className="p-3 bg-teal-900/40 border-l-4 border-teal-500 rounded-r-lg"><Strong>✅ Result:</Strong> Weighted average ≈ <Strong>78 years</Strong> → <em className="italic">Life Expectancy at Birth = 78 years.</em></p>,
+      <p key="le-ex-interp"><Strong>Interpretation:</Strong></p>,
+      <p key="le-ex-interp-p">On average, a newborn today would live to about 78 years if current mortality rates persist.</p>,
+      <div key="le-visual-note" className="p-3 bg-slate-800/50 border border-slate-600 rounded-lg text-sm text-slate-400 italic">
+        <p>🧭 <em>Optional visual:</em> Add a bar or line chart showing survival curve (starting at 100,000 births and declining by age).</p>
+      </div>,
+
+      <h3 key="lr-h1" className="text-2xl font-bold text-slate-100 mt-8">Lifetime Risk of Disease</h3>,
+      <p key="lr-p1"><Strong>Definition:</Strong></p>,
+      <p key="lr-p2">The <em className="italic">probability</em> that an individual will develop a disease (or die from it) during their lifetime, assuming current rates persist and adjusting for competing causes of death.</p>,
+      <div key="lr-formula" className="p-4 bg-slate-800/50 rounded-lg text-lg font-mono text-slate-300">
+        <div className="flex items-center justify-center flex-wrap mb-2">
+          <span>Lifetime Risk = ∫</span>
+          <span className="text-sm align-sub mx-1">0</span>
+          <span className="text-sm align-super">A</span>
+          <span>&nbsp;i(a) × s(a) da</span>
+        </div>
+      </div>,
+      <p key="lr-where">where</p>,
+      <ul key="lr-where-ul" className="list-['–'] list-inside space-y-1 pl-4 font-mono text-sm">
+        <li><em className="italic">i(a)</em> = age-specific incidence rate</li>
+        <li><em className="italic">s(a)</em> = probability of surviving to age <em className="italic">a</em></li>
       </ul>,
-      <p key="lt-p2">There are two main types:</p>,
-      <ol key="lt-ol1" className="list-decimal list-inside space-y-3 pl-4">
-        <li><Strong>Period life table</Strong> — Uses mortality rates from a specific time period (e.g., 2024 U.S. mortality data).</li>
-        <li><Strong>Cohort life table</Strong> — Follows an actual birth cohort over time, reflecting real mortality experiences.</li>
-      </ol>,
-      <h4 key="lt-purpose-h" className="text-xl font-semibold text-slate-100">Purpose</h4>,
-      <p key="lt-purpose-p">Life tables are the foundation for calculating:</p>,
-      <ul key="lt-purpose-ul" className="list-disc list-inside space-y-3 pl-4">
-        <li><Strong>Life expectancy</Strong> at birth and at later ages</li>
-        <li><Strong>Survival probabilities</Strong></li>
-        <li><Strong>Lifetime disease risk</Strong> estimates</li>
-      </ul>,
-      <blockquote key="lt-quote" className="p-4 bg-yellow-900/50 border-l-4 border-yellow-500 rounded-r-lg text-yellow-300 italic">
-        <p>“Be careful of cumulative lifetime risk estimates that don’t give you the life expectancy on which they are based.”</p>
+
+      <h3 key="lr-ex-h" className="text-2xl font-bold text-slate-100 mt-8">Intuitive Example</h3>,
+      <p key="lr-ex-p1">If a disease occurs at <Strong>1% per decade</Strong> from age 30 to 80 (5 decades) <Strong>and there is no competing mortality</Strong>:</p>,
+      <div key="lr-ex-calc" className="p-4 bg-slate-800/50 rounded-lg text-xl font-mono text-slate-300 flex items-center justify-center">
+        <span>Lifetime Risk ≈ 5%</span>
+      </div>,
+      <p key="lr-ex-p2">But if only 70% of people survive past 70 (due to other causes), the <Strong>adjusted lifetime risk ≈ 3.5%</Strong>.</p>,
+      <div key="lr-takeaway" className="p-3 bg-amber-900/40 border-l-4 border-amber-500 rounded-r-lg">
+        <p><Strong>🧠 Takeaway:</Strong> Ignoring competing mortality <Strong>overestimates</Strong> true lifetime risk.</p>
+      </div>,
+
+      <h3 key="caution-h" className="text-2xl font-bold text-slate-100 mt-8">"Be careful of cumulative lifetime risk estimates..."</h3>,
+      <p key="caution-p1">When you hear statements like</p>,
+      <blockquote key="caution-quote" className="p-4 bg-yellow-900/50 border-l-4 border-yellow-500 rounded-r-lg text-yellow-300 italic">
+        <p>"1 in 8 women will develop breast cancer,"</p>
       </blockquote>,
-      <h4 key="lt-meaning-h" className="text-xl font-semibold text-slate-100">Meaning:</h4>,
-      <p key="lt-meaning-p1">Some lifetime risk figures (e.g., “a 1 in 8 chance of breast cancer”) assume <Strong>a full lifetime exposure up to an advanced age (e.g., 85 or 90 years)</Strong>.</p>,
-      <p key="lt-meaning-p2">However:</p>,
-      <ul key="lt-meaning-ul" className="list-['–'] list-inside space-y-2 pl-4">
-        <li>Not everyone lives that long — mortality from other causes reduces exposure time.</li>
-        <li>If an estimate ignores <Strong>competing mortality</Strong>, it <Strong>overstates</Strong> true risk in the population.</li>
-      </ul>,
-      <div key="lt-example" className="p-3 bg-sky-900/40 border-l-4 border-sky-500 rounded-r-lg">
-        <p><Strong>✅ Example:</Strong> If lifetime breast cancer risk is said to be 12%, this assumes living into the 80s. But if many die earlier (heart disease, accidents, etc.), <Strong>the real observed risk is lower</Strong> because fewer reach those older ages. That’s why proper <Strong>life-table–based estimates</Strong> are needed — they account for both disease risk <em className="italic">and</em> competing death risk.</p>
-      </div>,
+      <p key="caution-p2">this assumes survival into older age (e.g., 85 years).</p>,
+      <p key="caution-p3">In reality, because not everyone lives that long, the <Strong>observed lifetime risk</Strong> is lower when adjusted by a life table.</p>,
 
-      <h3 key="summary-h" className="text-2xl font-bold text-slate-100">Summary</h3>,
+      <h3 key="visual-h" className="text-2xl font-bold text-slate-100 mt-8">📊 Optional Visual Aids</h3>,
+      <ul key="visual-ul" className="list-disc list-inside space-y-3 pl-4">
+        <li><Strong>Figure 1:</Strong> Survival curve (Life expectancy visualization)<br/>
+        <span className="text-sm text-slate-400">→ X-axis: age; Y-axis: proportion surviving.</span></li>
+        <li><Strong>Figure 2:</Strong> Cumulative disease risk vs. age<br/>
+        <span className="text-sm text-slate-400">→ Shows how cumulative risk rises slowly early, then levels off as fewer remain alive.</span></li>
+        <li><Strong>Interactive Resource:</Strong> <a href="https://www.ssa.gov/oact/STATS/table4c6.html" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">U.S. Social Security Period Life Table</a></li>
+      </ul>,
+
+      <h3 key="summary-h" className="text-2xl font-bold text-slate-100 mt-8">Summary</h3>,
       <div key="summary-table-container" className="overflow-x-auto">
-        <table className="w-full text-left border-collapse text-slate-300">
+        <table className="w-full text-left border-collapse text-slate-300 bg-slate-800/30 rounded-lg overflow-hidden">
             <thead>
-                <tr className="bg-slate-800/70">
+                <tr className="bg-slate-700/50">
                     <th className="p-3 border border-slate-700/50 font-semibold text-slate-100 align-top">Concept</th>
                     <th className="p-3 border border-slate-700/50 font-semibold text-slate-100 align-top">Definition</th>
                     <th className="p-3 border border-slate-700/50 font-semibold text-slate-100 align-top">Derived From</th>
@@ -1085,33 +1116,33 @@ const contentSections = [
             <tbody>
                 <tr>
                     <td className="p-3 border border-slate-700/50 align-top"><Strong>Life Expectancy at Birth</Strong></td>
-                    <td className="p-3 border border-slate-700/50 align-top">Average expected years of life given current age-specific mortality</td>
+                    <td className="p-3 border border-slate-700/50 align-top">Average expected years of life given current mortality</td>
                     <td className="p-3 border border-slate-700/50 align-top">Life table</td>
-                    <td className="p-3 border border-slate-700/50 align-top">Reflects mortality patterns, not individual prediction</td>
+                    <td className="p-3 border border-slate-700/50 align-top">Reflects population mortality, not individual prediction</td>
                 </tr>
                 <tr>
                     <td className="p-3 border border-slate-700/50 align-top"><Strong>Lifetime Risk</Strong></td>
-                    <td className="p-3 border border-slate-700/50 align-top">Probability of developing a disease by a given age, adjusting for competing risks</td>
+                    <td className="p-3 border border-slate-700/50 align-top">Probability of developing a disease by a given age</td>
                     <td className="p-3 border border-slate-700/50 align-top">Life table integrating incidence</td>
-                    <td className="p-3 border border-slate-700/50 align-top">Gives true risk over lifespan</td>
+                    <td className="p-3 border border-slate-700/50 align-top">True probability, adjusted for competing risks</td>
                 </tr>
                 <tr>
                     <td className="p-3 border border-slate-700/50 align-top"><Strong>Life Table</Strong></td>
-                    <td className="p-3 border border-slate-700/50 align-top">Statistical model of survival and death by age</td>
+                    <td className="p-3 border border-slate-700/50 align-top">Statistical model of survival/death by age</td>
                     <td className="p-3 border border-slate-700/50 align-top">Age-specific mortality data</td>
-                    <td className="p-3 border border-slate-700/50 align-top">Used for life expectancy and lifetime risk calculations</td>
+                    <td className="p-3 border border-slate-700/50 align-top">Basis for life expectancy and lifetime risk</td>
                 </tr>
             </tbody>
         </table>
       </div>,
 
-      <h3 key="takeaway-h" className="text-2xl font-bold text-slate-100">Key Takeaway</h3>,
-      <blockquote key="takeaway-bq" className="p-4 bg-sky-900/40 border-l-4 border-sky-500 rounded-r-lg text-lg italic space-y-2">
-        <p>Life expectancy and lifetime risk are <Strong>summary measures derived from life tables</Strong>.</p>
-        <ul className="list-['–'] list-inside pl-4 space-y-1 not-italic text-base">
-            <li>Life expectancy reflects <Strong>current mortality</Strong>, not actual lifespan.</li>
-            <li>Lifetime risk reflects <Strong>the probability of developing disease</Strong>, adjusted for competing risks.</li>
-            <li>Be cautious: risk estimates that ignore mortality or life expectancy context may <Strong>overstate actual lifetime risk</Strong>.</li>
+      <h3 key="takeaway-h" className="text-2xl font-bold text-slate-100 mt-8">Key Takeaway</h3>,
+      <blockquote key="takeaway-bq" className="p-4 bg-sky-900/40 border-l-4 border-sky-500 rounded-r-lg text-lg space-y-3">
+        <p>Life expectancy and lifetime risk are both <Strong>derived from life tables</Strong>.</p>
+        <ul className="list-['–'] list-inside pl-4 space-y-2">
+            <li>Life expectancy reflects <Strong>current mortality patterns</Strong>.</li>
+            <li>Lifetime risk reflects <Strong>disease probability</Strong>, adjusted for <Strong>competing risks</Strong>.</li>
+            <li>Ignoring competing mortality can <Strong>overstate</Strong> true lifetime risk.</li>
         </ul>
       </blockquote>,
       <div key="q7-container">
