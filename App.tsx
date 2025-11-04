@@ -1087,7 +1087,7 @@ const contentSections = [
         <p><Strong>🧠 Takeaway:</Strong> Ignoring competing mortality <Strong>overestimates</Strong> true lifetime risk.</p>
       </div>,
 
-      <h3 key="caution-h" className="text-2xl font-bold text-slate-100 mt-8">"Be careful of cumulative lifetime risk estimates..."</h3>,
+      <h3 key="caution-h" className="text-2xl font-bold text-slate-100 mt-8">"Be careful of cumulative lifetime risk estimates that don't give you the life expectancy on which they are based."</h3>,
       <p key="caution-p1">When you hear statements like</p>,
       <blockquote key="caution-quote" className="p-4 bg-yellow-900/50 border-l-4 border-yellow-500 rounded-r-lg text-yellow-300 italic">
         <p>"1 in 8 women will develop breast cancer,"</p>
