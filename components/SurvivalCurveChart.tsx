@@ -7,12 +7,18 @@ const PADDING = 50;
 
 const data = [
     { age: 0, survivors: 100000 },
-    { age: 20, survivors: 99800 },
-    { age: 40, survivors: 99400 },
-    { age: 60, survivors: 98500 },
-    { age: 80, survivors: 96000 },
-    { age: 100, survivors: 50000 }, // Extrapolating to show a downward trend
-    { age: 110, survivors: 0 },
+    { age: 1, survivors: 99300 },   // Infant mortality
+    { age: 10, survivors: 99100 },
+    { age: 20, survivors: 98800 },
+    { age: 30, survivors: 98200 },
+    { age: 40, survivors: 97200 },
+    { age: 50, survivors: 95500 },
+    { age: 60, survivors: 92500 },
+    { age: 70, survivors: 86000 },
+    { age: 80, survivors: 72000 },
+    { age: 90, survivors: 45000 },
+    { age: 100, survivors: 12000 },
+    { age: 110, survivors: 500 },
 ];
 
 const mapRange = (value: number, inMin: number, inMax: number, outMin: number, outMax: number) => ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
