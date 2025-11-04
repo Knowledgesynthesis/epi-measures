@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { BlockMath, InlineMath } from 'react-katex';
 import { Question } from './components/Question';
 import { Fraction } from './components/Fraction';
 import { InteractiveCalculator } from './components/InteractiveCalculator';
@@ -1063,18 +1064,13 @@ const contentSections = [
       <h3 key="lr-h1" className="text-2xl font-bold text-slate-100 mt-8">Lifetime Risk of Disease</h3>,
       <p key="lr-p1"><Strong>Definition:</Strong></p>,
       <p key="lr-p2">The <em className="italic">probability</em> that an individual will develop a disease (or die from it) during their lifetime, assuming current rates persist and adjusting for competing causes of death.</p>,
-      <div key="lr-formula" className="p-4 bg-slate-800/50 rounded-lg text-lg font-mono text-slate-300">
-        <div className="flex items-center justify-center flex-wrap mb-2">
-          <span>Lifetime Risk = ∫</span>
-          <span className="text-sm align-sub mx-1">0</span>
-          <span className="text-sm align-super">A</span>
-          <span>&nbsp;i(a) × s(a) da</span>
-        </div>
+      <div key="lr-formula" className="p-4 bg-slate-800/50 rounded-lg text-slate-300">
+        <BlockMath math="\text{Lifetime Risk} = \int_0^A i(a) \times s(a) \, da" />
       </div>,
       <p key="lr-where">where</p>,
-      <ul key="lr-where-ul" className="list-['–'] list-inside space-y-1 pl-4 font-mono text-sm">
-        <li><em className="italic">i(a)</em> = age-specific incidence rate</li>
-        <li><em className="italic">s(a)</em> = probability of surviving to age <em className="italic">a</em></li>
+      <ul key="lr-where-ul" className="list-['–'] list-inside space-y-1 pl-4 text-sm">
+        <li><InlineMath math="i(a)" /> = age-specific incidence rate</li>
+        <li><InlineMath math="s(a)" /> = probability of surviving to age <InlineMath math="a" /></li>
       </ul>,
 
       <h3 key="lr-ex-h" className="text-2xl font-bold text-slate-100 mt-8">Intuitive Example</h3>,
