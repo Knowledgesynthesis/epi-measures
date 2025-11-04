@@ -11,7 +11,6 @@ import { PersonTimeVisualizer } from './components/PersonTimeVisualizer';
 import { ProportionalMortalityChart } from './components/ProportionalMortalityChart';
 import { BirthRateCalculator } from './components/BirthRateCalculator';
 import { SurvivalCurveChart } from './components/SurvivalCurveChart';
-import { CumulativeDiseaseRiskChart } from './components/CumulativeDiseaseRiskChart';
 
 const Strong: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <strong className="font-semibold text-teal-400">{children}</strong>
@@ -1091,8 +1090,6 @@ const contentSections = [
       </blockquote>,
       <p key="caution-p2">this assumes survival into older age (e.g., 85 years).</p>,
       <p key="caution-p3">In reality, because not everyone lives that long, the <Strong>observed lifetime risk</Strong> is lower when adjusted by a life table.</p>,
-
-      <CumulativeDiseaseRiskChart key="cumulative-risk-chart" />,
 
       <div key="visual-resource" className="p-4 bg-slate-800/50 border border-slate-700/50 rounded-lg mt-6">
         <p className="text-sm text-slate-300"><Strong>📚 External Resource:</Strong></p>
