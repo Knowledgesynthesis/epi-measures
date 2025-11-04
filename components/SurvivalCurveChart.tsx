@@ -17,15 +17,17 @@ const data = [
     { age: 70, survivors: 86000 },
     { age: 80, survivors: 72000 },
     { age: 90, survivors: 45000 },
-    { age: 100, survivors: 12000 },
+    { age: 100, survivors: 15000 },
+    { age: 105, survivors: 4000 },
     { age: 110, survivors: 500 },
+    { age: 115, survivors: 0 },
 ];
 
 const mapRange = (value: number, inMin: number, inMax: number, outMin: number, outMax: number) => ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
 
 const path = data
     .map(p => ({
-        x: mapRange(p.age, 0, 110, PADDING, CHART_WIDTH - PADDING),
+        x: mapRange(p.age, 0, 115, PADDING, CHART_WIDTH - PADDING),
         y: mapRange(p.survivors, 0, 100000, CHART_HEIGHT - PADDING, PADDING)
     }))
     .map(p => `${p.x},${p.y}`)
@@ -64,7 +66,7 @@ export const SurvivalCurveChart: React.FC = () => {
                         Age (years)
                     </text>
                     {xAxisLabels.map(label => {
-                        const x = mapRange(label, 0, 110, PADDING, CHART_WIDTH - PADDING);
+                        const x = mapRange(label, 0, 115, PADDING, CHART_WIDTH - PADDING);
                         return (
                             <g key={`x-${label}`}>
                                 <line x1={x} y1={CHART_HEIGHT - PADDING} x2={x} y2={CHART_HEIGHT - PADDING + 5} className="stroke-slate-600" strokeWidth="2" />
