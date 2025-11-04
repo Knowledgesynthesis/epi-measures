@@ -10,6 +10,8 @@ import { InteractivePrevalenceModel } from './components/InteractivePrevalenceMo
 import { PersonTimeVisualizer } from './components/PersonTimeVisualizer';
 import { ProportionalMortalityChart } from './components/ProportionalMortalityChart';
 import { BirthRateCalculator } from './components/BirthRateCalculator';
+import { SurvivalCurveChart } from './components/SurvivalCurveChart';
+import { CumulativeDiseaseRiskChart } from './components/CumulativeDiseaseRiskChart';
 
 const Strong: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <strong className="font-semibold text-teal-400">{children}</strong>
@@ -1054,9 +1056,7 @@ const contentSections = [
       <p key="le-ex-result" className="p-3 bg-teal-900/40 border-l-4 border-teal-500 rounded-r-lg"><Strong>✅ Result:</Strong> Weighted average ≈ <Strong>78 years</Strong> → <em className="italic">Life Expectancy at Birth = 78 years.</em></p>,
       <p key="le-ex-interp"><Strong>Interpretation:</Strong></p>,
       <p key="le-ex-interp-p">On average, a newborn today would live to about 78 years if current mortality rates persist.</p>,
-      <div key="le-visual-note" className="p-3 bg-slate-800/50 border border-slate-600 rounded-lg text-sm text-slate-400 italic">
-        <p>🧭 <em>Optional visual:</em> Add a bar or line chart showing survival curve (starting at 100,000 births and declining by age).</p>
-      </div>,
+      <SurvivalCurveChart key="le-survival-chart" />,
 
       <h3 key="lr-h1" className="text-2xl font-bold text-slate-100 mt-8">Lifetime Risk of Disease</h3>,
       <p key="lr-p1"><Strong>Definition:</Strong></p>,
@@ -1093,14 +1093,14 @@ const contentSections = [
       <p key="caution-p2">this assumes survival into older age (e.g., 85 years).</p>,
       <p key="caution-p3">In reality, because not everyone lives that long, the <Strong>observed lifetime risk</Strong> is lower when adjusted by a life table.</p>,
 
-      <h3 key="visual-h" className="text-2xl font-bold text-slate-100 mt-8">📊 Optional Visual Aids</h3>,
-      <ul key="visual-ul" className="list-disc list-inside space-y-3 pl-4">
-        <li><Strong>Figure 1:</Strong> Survival curve (Life expectancy visualization)<br/>
-        <span className="text-sm text-slate-400">→ X-axis: age; Y-axis: proportion surviving.</span></li>
-        <li><Strong>Figure 2:</Strong> Cumulative disease risk vs. age<br/>
-        <span className="text-sm text-slate-400">→ Shows how cumulative risk rises slowly early, then levels off as fewer remain alive.</span></li>
-        <li><Strong>Interactive Resource:</Strong> <a href="https://www.ssa.gov/oact/STATS/table4c6.html" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">U.S. Social Security Period Life Table</a></li>
-      </ul>,
+      <h3 key="visual-h" className="text-2xl font-bold text-slate-100 mt-8">📊 Visual Aids</h3>,
+
+      <CumulativeDiseaseRiskChart key="cumulative-risk-chart" />,
+
+      <div key="visual-resource" className="p-4 bg-slate-800/50 border border-slate-700/50 rounded-lg mt-6">
+        <p className="text-sm text-slate-300"><Strong>📚 Interactive Resource:</Strong></p>
+        <p className="mt-2"><a href="https://www.ssa.gov/oact/STATS/table4c6.html" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">U.S. Social Security Period Life Table</a> — Explore real-world life expectancy data by age and sex.</p>
+      </div>,
 
       <h3 key="summary-h" className="text-2xl font-bold text-slate-100 mt-8">Summary</h3>,
       <div key="summary-table-container" className="overflow-x-auto">
