@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { BlockMath, InlineMath } from 'react-katex';
 import { Question } from './components/Question';
-import { Fraction } from './components/Fraction';
 import { InteractiveCalculator } from './components/InteractiveCalculator';
 import { RiskVsRateChart } from './components/RiskVsRateChart';
 import { InteractiveYPLLCalculator } from './components/InteractiveYPLLCalculator';
