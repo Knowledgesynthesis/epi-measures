@@ -1092,12 +1092,10 @@ const contentSections = [
       <p key="caution-p2">this assumes survival into older age (e.g., 85 years).</p>,
       <p key="caution-p3">In reality, because not everyone lives that long, the <Strong>observed lifetime risk</Strong> is lower when adjusted by a life table.</p>,
 
-      <h3 key="visual-h" className="text-2xl font-bold text-slate-100 mt-8">📊 Visual Aids</h3>,
-
       <CumulativeDiseaseRiskChart key="cumulative-risk-chart" />,
 
       <div key="visual-resource" className="p-4 bg-slate-800/50 border border-slate-700/50 rounded-lg mt-6">
-        <p className="text-sm text-slate-300"><Strong>📚 Interactive Resource:</Strong></p>
+        <p className="text-sm text-slate-300"><Strong>📚 External Resource:</Strong></p>
         <p className="mt-2"><a href="https://www.ssa.gov/oact/STATS/table4c6.html" target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline">U.S. Social Security Period Life Table</a> — Explore real-world life expectancy data by age and sex.</p>
       </div>,
 
