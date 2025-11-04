@@ -1033,29 +1033,31 @@ const contentSections = [
         <li>Calculated from life-table or survival analysis methods.</li>
       </ul>,
 
-      <h3 key="le-ex-h" className="text-2xl font-bold text-slate-100 mt-8">🔍 Example: Simplified Life Table</h3>,
+      <h3 key="le-ex-h" className="text-2xl font-bold text-slate-100 mt-8">🔍 Example: Simplified Life Table (Corrected)</h3>,
       <div key="le-ex-table" className="overflow-x-auto">
         <table className="w-full border-collapse bg-slate-800/30 rounded-lg overflow-hidden">
           <thead>
             <tr className="bg-slate-700/50">
               <th className="p-3 text-left border border-slate-700/50 font-semibold text-slate-100">Age Group (years)</th>
               <th className="p-3 text-left border border-slate-700/50 font-semibold text-slate-100">Death Rate (per 1,000)</th>
+              <th className="p-3 text-left border border-slate-700/50 font-semibold text-slate-100">Deaths (per 100,000 cohort)</th>
               <th className="p-3 text-left border border-slate-700/50 font-semibold text-slate-100">Survivors (from 100,000)</th>
               <th className="p-3 text-left border border-slate-700/50 font-semibold text-slate-100">Average Remaining Life (years)</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td className="p-3 border border-slate-700/50">0–19</td><td className="p-3 border border-slate-700/50 font-mono">2</td><td className="p-3 border border-slate-700/50 font-mono">100,000</td><td className="p-3 border border-slate-700/50 font-mono">75</td></tr>
-            <tr><td className="p-3 border border-slate-700/50">20–39</td><td className="p-3 border border-slate-700/50 font-mono">4</td><td className="p-3 border border-slate-700/50 font-mono">99,800</td><td className="p-3 border border-slate-700/50 font-mono">58</td></tr>
-            <tr><td className="p-3 border border-slate-700/50">40–59</td><td className="p-3 border border-slate-700/50 font-mono">10</td><td className="p-3 border border-slate-700/50 font-mono">99,400</td><td className="p-3 border border-slate-700/50 font-mono">38</td></tr>
-            <tr><td className="p-3 border border-slate-700/50">60–79</td><td className="p-3 border border-slate-700/50 font-mono">40</td><td className="p-3 border border-slate-700/50 font-mono">98,500</td><td className="p-3 border border-slate-700/50 font-mono">19</td></tr>
-            <tr><td className="p-3 border border-slate-700/50">80+</td><td className="p-3 border border-slate-700/50 font-mono">200</td><td className="p-3 border border-slate-700/50 font-mono">96,000</td><td className="p-3 border border-slate-700/50 font-mono">6</td></tr>
+            <tr><td className="p-3 border border-slate-700/50">0–19</td><td className="p-3 border border-slate-700/50 font-mono">2</td><td className="p-3 border border-slate-700/50 font-mono">200</td><td className="p-3 border border-slate-700/50 font-mono">99,800</td><td className="p-3 border border-slate-700/50 font-mono">75</td></tr>
+            <tr><td className="p-3 border border-slate-700/50">20–39</td><td className="p-3 border border-slate-700/50 font-mono">4</td><td className="p-3 border border-slate-700/50 font-mono">399</td><td className="p-3 border border-slate-700/50 font-mono">99,401</td><td className="p-3 border border-slate-700/50 font-mono">58</td></tr>
+            <tr><td className="p-3 border border-slate-700/50">40–59</td><td className="p-3 border border-slate-700/50 font-mono">10</td><td className="p-3 border border-slate-700/50 font-mono">994</td><td className="p-3 border border-slate-700/50 font-mono">98,407</td><td className="p-3 border border-slate-700/50 font-mono">38</td></tr>
+            <tr><td className="p-3 border border-slate-700/50">60–79</td><td className="p-3 border border-slate-700/50 font-mono">40</td><td className="p-3 border border-slate-700/50 font-mono">3,936</td><td className="p-3 border border-slate-700/50 font-mono">94,471</td><td className="p-3 border border-slate-700/50 font-mono">19</td></tr>
+            <tr><td className="p-3 border border-slate-700/50">80+</td><td className="p-3 border border-slate-700/50 font-mono">200</td><td className="p-3 border border-slate-700/50 font-mono">18,894</td><td className="p-3 border border-slate-700/50 font-mono">75,577</td><td className="p-3 border border-slate-700/50 font-mono">6</td></tr>
           </tbody>
         </table>
       </div>,
       <p key="le-ex-result" className="p-3 bg-teal-900/40 border-l-4 border-teal-500 rounded-r-lg"><Strong>✅ Result:</Strong> Weighted average ≈ <Strong>78 years</Strong> → <em className="italic">Life Expectancy at Birth = 78 years.</em></p>,
       <p key="le-ex-interp"><Strong>Interpretation:</Strong></p>,
-      <p key="le-ex-interp-p">On average, a newborn today would live to about 78 years if current mortality rates persist.</p>,
+      <p key="le-ex-interp-p">On average, a newborn today would live to about 78 years if current mortality rates persist.<br/>
+      Each age group's survivors are calculated by subtracting deaths (based on rate × survivors) from the previous row.</p>,
       <SurvivalCurveChart key="le-survival-chart" />,
 
       <h3 key="lr-h1" className="text-2xl font-bold text-slate-100 mt-8">Lifetime Risk of Disease</h3>,

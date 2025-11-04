@@ -10,18 +10,18 @@ const mapRange = (value: number, inMin: number, inMax: number, outMin: number, o
 };
 
 export const SurvivalCurveChart: React.FC = () => {
-    // Data from the life table example
+    // Data from the corrected life table example
     const data = [
         { age: 0, survivors: 100000, label: '0' },
         { age: 19, survivors: 100000, label: '19' },
         { age: 20, survivors: 99800, label: '20' },
         { age: 39, survivors: 99800, label: '39' },
-        { age: 40, survivors: 99400, label: '40' },
-        { age: 59, survivors: 99400, label: '59' },
-        { age: 60, survivors: 98500, label: '60' },
-        { age: 79, survivors: 98500, label: '79' },
-        { age: 80, survivors: 96000, label: '80' },
-        { age: 100, survivors: 70000, label: '100' }, // Extrapolated for visual effect
+        { age: 40, survivors: 99401, label: '40' },
+        { age: 59, survivors: 99401, label: '59' },
+        { age: 60, survivors: 98407, label: '60' },
+        { age: 79, survivors: 98407, label: '79' },
+        { age: 80, survivors: 94471, label: '80' },
+        { age: 100, survivors: 75577, label: '100' }, // From 80+ age group
     ];
 
     const maxSurvivors = 100000;
